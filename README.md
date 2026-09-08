@@ -62,10 +62,50 @@ To create, you just need to go the **Crate application** link and complete the d
 
 ### D-RS-ZS-BZ 
 
-The code **RS-ZS-BZ** allow to measure the noise with the RS-ZS-BZ sensor.
+The code **RS-ZS-BZ** allow to measure the noise with e RS-ZS-BZ sensor.
 
 ### E-ICS43434 
 
 The code **ICS43434** allow to measure the noise with the ICS43434 sensor.
 
 
+---------------
+
+## 1. Creation of TTN Application
+
+To use the TTN communication, you need to create one application on The Things Network. First, you need to create an account to use TTN. Then, need to create the first application. Go to **Create application** and complete the Application ID and Application name. You can also add an description of the app. The application is now created et can be used to save the devices.
+
+## 2. Save the device
+
+To save one device, you need to go to **Applications** and select the application created. On the menu, go to **End devices** and after click to **Register end device**.
+
+### 2.1 Configuration of the device
+
+On the **Register end device** page, need to chose **Enter end device specifics manually** in the **Input method** section.
+Then follow the table to complete the next settings : 
+
+| Setting name | Setting |
+|--------------------|--------|
+|**Frenquency plan**              | Europe 863-870 MHz for RX2 - recommended     |
+|**LoRaWAN version**              | LoRaWAN Specification 1.03     |
+|**Regional Parameters version**              | RP001 Regional Parameters 1.0.3 revision A     |
+
+Then on the **Provisioning informaion**, need to complete the **JoinEUI** part with an random value. After you just need to genrated the **DevEUI** and **AppKey**. After add one name to the device and clik to **Register end device** to finish the registration.
+
+### 2.2 Check the connexion between the LoRaWAN module and the ESP32
+
+In the **AT_command** code, you can check the connexion between the ESP32 and the LoRaWAN module. On the table, you can use the following command to have different information :
+
+| Command | What the command return |
+|--------------------|--------|
+|**AT+VER=?**              | Know the firmware version    |
+|**AT+NWM=?**              | Know the actual mode - P2P = 0 / LoRa = 1     |
+|**AT+BAND=?**              | Know the region - EU868 = 4 for Europe   |
+|**AT+DEVEUI=?**              | Know the DEVEUI of the RAK3172 - They must be the same via the TTN DevEUI  |
+|**AT+APPEUI=?**              | Check if it is the same like the LoRaWAN server   |
+|**AT+APPKEY=?**              | Check the configuration of the AppKey  |
+|**AT+NJS=?**              | Know the Network Join statut - No Connected = 0 / Connected = 1 |
+|**AT+JOIN=?**              | Ask to RAK join the network   |
+|**AT+SEND=2:12345678**              | Try to send a LoRaWAN message  |
+
+Before send one message with the last command, you need to receive **+EVT:JOINED** $. This message confirme you the RAK is connected with the network.
