@@ -87,6 +87,6 @@ On the TTN Live DATA page, you see the message of the join between the network a
 When the **AT_command** code return you the data on the Live DATA page on the TTN, you can use the **AT_automatic_send** code to make automatically the connection between the 2 parts.
 If the connection works with success, on TTN, the message appear on the Live Data page after the join message.
 
-## 5. Send automatic message come from one sensor
+## 5. Send automatic message from one sensor
 
 Now, the **MPU_6050_TTN** code allow to send message of the MPU_6050 sensor. After communication is working, the inforamtion are available one the Live Data page.
