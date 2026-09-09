@@ -8,8 +8,7 @@ The file use different sensor like temperature sensor or microphone. For each fi
 For the project, a 3D design was created to simulate a real conditions for the LoRaWAN antenna and the microphone.
 
 ## Connection with the ESP32 board
-### A-receiver 
-For this file, you just need to connect the LoRaWAN module to the card
+### A- LoRaWAN module
 
 | LoRaWAN Pin | ESP32 Pin |
 |--------------------|--------|
@@ -18,8 +17,7 @@ For this file, you just need to connect the LoRaWAN module to the card
 |**TXD**              | RXD     |
 |**RXD**              | TXD     |
 
-### B-sensor_transmitter 
-For this file, the MPU-6050 sensor is connect to the ESP32. 
+### B-MPU-6050 
 
 | MPU-6050 | ESP32 Pin |
 |--------------------|--------|
@@ -28,14 +26,7 @@ For this file, the MPU-6050 sensor is connect to the ESP32.
 |**SDA**              | 22     |
 |**SCL**              | 21     |
 
-The LoRaWAN antenna is connected like the receiver code.
-
-### C-temp_TTN 
-This code **temp_TTN** use the same configuration like the sensor_transmitter. However, they use TTN to receive the information.
-### D-RS-ZS-BZ 
-The coce **RS-ZS-BZ** file measure the noise with the RS-ZS-BZ sensor. Need to assemble this one with the ESP32 card.
-### E-ICS43434 
-This **ICS43434** measure the noise with the ICS43434 sensor.
+### C-ICS43434 
 
 | ICS43434 | ESP32 Pin |
 |--------------------|--------|
@@ -45,29 +36,6 @@ This **ICS43434** measure the noise with the ICS43434 sensor.
 |**BCLK**              | 32     |
 |**GND**              | GND     |
 |**3V**              | 3V3     |
-
-## What does the code do ?
-### A-receiver 
-
-The code **receiver** allow to configure one board with the reception setting for the LoRaWAN module. To receive information you also need to configure another board with the **sensor_transmitter** code.
-
-### B-sensor_transmitter 
-
-The code **sensor_transmitter** allow to configure one board with the transmitter setting for the LoRaWAN module. The message send to the other board come from the **MPU-6050** sensor.
-
-### C-temp_TTN 
-
-The code **temp_TTN** allow to send the data from the sensor to TTN website. You need to configure one object on the following link : https://eu1.cloud.thethings.network/console/. First, create an account and then you will be able to start to configure/create one device and one application.
-To create, you just need to go the **Crate application** link and complete the different part with name, ID and description. For the second part, need to go to the **Add end device** link and chose the application created.
-
-### D-RS-ZS-BZ 
-
-The code **RS-ZS-BZ** allow to measure the noise with e RS-ZS-BZ sensor.
-
-### E-ICS43434 
-
-The code **ICS43434** allow to measure the noise with the ICS43434 sensor.
-
 
 ---------------
 
@@ -113,3 +81,12 @@ Use the following command : **AT+JOIN=1**.
 A successful attempt returns : **OK** followed by : **+EVT:JOINED**. 
 The **+EVT:JOINED** message confirms that the RAK3172 successfully joined the LoRaWAN network. The connection can also be checked with : **AT+NJS=?**.
 On the TTN Live DATA page, you see the message of the join between the network and the RAK. After you can send the following command to send a message : **AT+SEND=2:12345678**. Then the message must be appears on the Live DATA page.
+
+## 4. Automatic connection to TTN
+
+When the **AT_command** code return you the data on the Live DATA page on the TTN, you can use the **AT_automatic_send** code to make automatically the connection between the 2 parts.
+If the connection works with success, on TTN, the message appear on the Live Data page after the join message.
+
+## 5. Send automatic message come from one sensor
+
+Now, the **MPU_6050_TTN** code allow to send message of the MPU_6050 sensor. After communication is working, the inforamtion are available one the Live Data page.
