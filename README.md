@@ -105,7 +105,11 @@ In the **AT_command** code, you can check the connexion between the ESP32 and th
 |**AT+APPEUI=?**              | Check if it is the same like the LoRaWAN server   |
 |**AT+APPKEY=?**              | Check the configuration of the AppKey  |
 |**AT+NJS=?**              | Know the Network Join statut - No Connected = 0 / Connected = 1 |
-|**AT+JOIN=?**              | Ask to RAK join the network   |
-|**AT+SEND=2:12345678**              | Try to send a LoRaWAN message  |
 
-Before send one message with the last command, you need to receive **+EVT:JOINED** $. This message confirme you the RAK is connected with the network.
+## 3. Connect the RAK3172 to the LoRaWAN network
+
+Once the configuration has been checked, the RAK3172 can attempt to join the LoRaWAN network.
+Use the following command : **AT+JOIN=1**.
+A successful attempt returns : **OK** followed by : **+EVT:JOINED**. 
+The **+EVT:JOINED** message confirms that the RAK3172 successfully joined the LoRaWAN network. The connection can also be checked with : **AT+NJS=?**.
+On the TTN Live DATA page, you see the message of the join between the network and the RAK. After you can send the following command to send a message : **AT+SEND=2:12345678**. Then the message must be appears on the Live DATA page.
