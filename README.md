@@ -50,13 +50,12 @@ To save one device, you need to go to **Applications** and select the applicatio
 ### 2.1 Configuration of the device
 
 On the **Register end device** page, need to chose **Enter end device specifics manually** in the **Input method** section.
-Then follow the table to complete the next settings : 
+Then follow the image to complete the next settings : 
 
-| Setting name | Setting |
-|--------------------|--------|
-|**Frenquency plan**              | Europe 863-870 MHz for RX2 - recommended     |
-|**LoRaWAN version**              | LoRaWAN Specification 1.03     |
-|**Regional Parameters version**              | RP001 Regional Parameters 1.0.3 revision A     |
+<p align="center">
+  <img src="./first-part-TTN.png" width="500">
+  <br>
+</p>
 
 Then on the **Provisioning informaion**, need to complete the **JoinEUI** part with an random value. After you just need to genrated the **DevEUI** and **AppKey**. After add one name to the device and clik to **Register end device** to finish the registration.
 
