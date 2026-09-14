@@ -61,7 +61,7 @@ Then on the **Provisioning informaion**, need to complete the **JoinEUI** part w
 
 ### 2.2 Check the connexion between the LoRaWAN module and the ESP32
 
-In the **AT_command** code, you can check the connexion between the ESP32 and the LoRaWAN module. On the table, you can use the following command to have different information :
+You can check the connexion between the ESP32 and the LoRaWAN module. On the table, you can use the following command to have different information :
 
 | Command | What the command return |
 |--------------------|--------|
@@ -73,6 +73,9 @@ In the **AT_command** code, you can check the connexion between the ESP32 and th
 |**AT+APPKEY=?**              | Check the configuration of the AppKey  |
 |**AT+NJS=?**              | Know the Network Join statut - No Connected = 0 / Connected = 1 |
 
+> [!NOTE]
+> Don't forget to change the OTAA Keys on the code with the value created on the TTN device (DEVEUI/APPEUI/APPKEY).
+
 ## 3. Connect the RAK3172 to the LoRaWAN network
 
 Once the configuration has been checked, the RAK3172 can attempt to join the LoRaWAN network.
@@ -83,7 +86,7 @@ On the TTN Live DATA page, you see the message of the join between the network a
 
 ## 4. Automatic connection to TTN
 
-When the **AT_command** code return you the data on the Live DATA page on the TTN, you can use the **AT_automatic_send** code to make automatically the connection between the 2 parts.
+When the **AT_automatic_send** code return you the data on the Live DATA page on the TTN, you can use the **AT_automatic_send** code to make automatically the connection between the 2 parts.
 If the connection works with success, on TTN, the message appear on the Live Data page after the join message.
 
 ## 5. Send automatic message from one sensor
